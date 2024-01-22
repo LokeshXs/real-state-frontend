@@ -1,0 +1,70 @@
+/* .swiper {
+  width: 100%;
+  height: 100%;
+  
+} */
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+ 
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* .swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  width: 100%;
+}
+
+.mySwiperGallery {
+  margin-top: 2rem;
+  height: 100%;
+  box-sizing: border-box;
+  
+}
+
+.mySwiperGallery .swiper-slide {
+  width: 20%;
+  height: 100%;
+  opacity: 0.5;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mySwiperGallery .swiper-slide-thumb-active {
+  opacity: 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
