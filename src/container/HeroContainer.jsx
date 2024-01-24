@@ -29,13 +29,13 @@ const HeroContainer = () => {
   }
 
   
-  // useEffect(() => {
-  //   if (videoPlay) {
-  //     videoRef.current.videoRef.current.play();
-  //   } else {
-  //     videoRef.current.videoRef.current.pause();
-  //   }
-  // }, [videoPlay]);
+  useEffect(() => {
+    if (videoPlay) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  }, [videoPlay]);
 
   // useEffect(()=>{
   //   console.log(videoRef.current.videoRef);
@@ -64,10 +64,10 @@ const HeroContainer = () => {
               textTransform: "capitalize",
 
             }}  >Contact Us</Button>
-{/* 
+
             <div className='flex items-center gap-4'><Fab color="secondary" aria-label="play" size='small' onClick={toggleVideo} >
               {videoPlay?<Pause color='primary' fontSize="small" />:<PlayArrow color='primary' fontSize="small" />}
-            </Fab > <span className='text-white text-base max-sm:text-sm drop-shadow-xl'>Watch Video</span></div> */}
+            </Fab > <span className='text-white text-base max-sm:text-sm drop-shadow-xl'>Watch Video</span></div>
           </motion.div>
 
         </div>
@@ -78,8 +78,12 @@ const HeroContainer = () => {
 
         <div className='absolute w-full h-full bg-gradient-to-r from-black to-#5A81FA opacity-[0.4]'></div>
         {/* <VideoPlayer type="video/mp4"  /> */}
-        {/* <video src={bgVideo} type="video/mp4" ref={videoRef} loop muted playsInline className="object-cover object-center h-full w-full"  /> */}
-        <AdvancedVideo muted autoPlay  loop cldVid={cld.video('/bg-video-hero_wxyvt8')}  plugins={[lazyload()]} cldPoster="auto" />
+        <video  ref={videoRef} loop muted playsInline className="object-cover object-center h-full w-full"  >
+        <source src="https://res.cloudinary.com/dhaboeimw/video/upload/v1//bg-video-hero_wxyvt8.webm?_a=BATAV5AA0" type="video/webm"/>
+        <source src="https://res.cloudinary.com/dhaboeimw/video/upload/v1//bg-video-hero_wxyvt8.mp4?_a=BATAV5AA0" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dhaboeimw/video/upload/v1//bg-video-hero_wxyvt8.ogv?_a=BATAV5AA0" type="video/ogg" />
+        </video>
+        {/* <AdvancedVideo muted autoPlay  loop cldVid={cld.video('/bg-video-hero_wxyvt8')} className="object-cover object-center h-full w-full"  plugins={[lazyload()]} cldPoster="auto" /> */}
 
       </div>
 
