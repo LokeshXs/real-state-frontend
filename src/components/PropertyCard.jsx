@@ -1,6 +1,6 @@
 import { Button, Chip } from "@mui/material";
 import image from "../assets/image.jpeg";
-import { LocalParking, LocationOnOutlined, Pool, Yard } from '@mui/icons-material';
+import {LocationOnOutlined } from '@mui/icons-material';
 import { formatCurrency } from "../utils/utils";
 import CardType1 from "./ui/CardType1";
 import Image from "./Image";

@@ -29,7 +29,7 @@ const NavBar = () => {
   const logoutHandler = async () => {
 
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/user/auth/logout", {
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/v1/user/auth/logout`, {
         headers: {
           "Content-Type": "application/json"
         },
@@ -123,7 +123,6 @@ const NavBar = () => {
               }}
             >
               <MenuItem onClick={profileHandler}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </Menu>
           </div> : <Link to="/auth/login" className='rounded-xl px-6 py-2 bg-white text-primary'>login</Link>}</li>

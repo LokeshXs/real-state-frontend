@@ -4,7 +4,6 @@ import PropertyInformation from '../container/Property/PropertyInformation'
 import { Avatar, Button, Skeleton } from '@mui/material'
 import { CallRounded, CalendarMonthRounded } from '@mui/icons-material'
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import PropertiesApis from '../services/api/properties'
 
 const propertyFetch = new PropertiesApis();
@@ -16,8 +15,6 @@ const PropertyPage = () => {
   const [propertyDetails, setPropertyDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(propertyId);
-
 
   useEffect(() => {
 
@@ -25,11 +22,7 @@ const PropertyPage = () => {
       setIsLoading(true);
       const response = await propertyFetch.getProperty(propertyId);
 
-      console.log(response);
-
       const data = response.data.property;
-
-
 
       setPropertyDetails(data);
       setIsLoading(false);
@@ -42,7 +35,6 @@ const PropertyPage = () => {
 
   return (
     <>
-
       <main className='pt-32 max-sm:pt-24 px-12 max-sm:px-4 flex items-start max-xl:flex-col'>
 
         <div className=' w-[70%] max-xl:w-full '>

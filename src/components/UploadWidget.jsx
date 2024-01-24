@@ -1,24 +1,21 @@
 import { Button } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import  { useEffect, useRef } from "react";
 import { updateTheData } from "../store/authSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const UploadWidget = () => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
-        cloudName: "dhaboeimw",
-        uploadPreset: "a2oafg9w",
+        cloudName: import.meta.env.VITE_CLOUD_NAME,
+        uploadPreset: import.meta.env.VITE_CLOUD_UPLOAD_PRESET,
       },
       function (error, result) {
-        console.log(result);
         if (result.info?.url) {
           dispatch(updateTheData({ imageUrl: result.info.url }));
         }

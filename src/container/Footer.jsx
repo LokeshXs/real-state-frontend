@@ -1,9 +1,19 @@
 import React from 'react'
 import { FacebookRounded, KeyboardArrowRight, Twitter, YouTube } from '@mui/icons-material'
 import RevealAnimation from '../components/RevealAnimation';
+import { Link } from 'react-router-dom';
 
-const usefulLinks = ["What We Do", "FAQ"];
-const pagesLinks = ["Home", "About-Us", "Contact-Us"];
+
+const pagesLinks = [
+  {
+    title:'Home',
+    link:'/'
+  },
+  {
+    title:'Browse',
+    link:'/properties'
+  }
+];
 
 const Footer = () => {
   return (
@@ -40,16 +50,7 @@ const Footer = () => {
           </div>
         </RevealAnimation>
         <div className='flex justify-center  gap-32 max-xl:gap-24 max-md:gap-12 max-sm:flex-col max-sm:gap-6  '>
-          <RevealAnimation>
-            <div>
-              <h3 className='text-2xl font-semibold text-white max-sm:text-lg'>Useful Links</h3>
-              <ul className='mt-6 max-sm:mt-4'>
-                {usefulLinks.map((link, index) => (
-                  <li key={index} className='text-white mt-2 max-sm:text-sm'><KeyboardArrowRight /> {link}</li>
-                ))}
-              </ul>
-            </div>
-          </RevealAnimation>
+        
 
 
           <RevealAnimation>
@@ -57,7 +58,9 @@ const Footer = () => {
               <h3 className='text-2xl font-semibold text-white max-sm:text-lg '>Pages</h3>
               <ul className='mt-6 max-sm:mt-4'>
                 {pagesLinks.map((link, index) => (
-                  <li key={index} className='text-white mt-2 max-sm:text-sm'><KeyboardArrowRight /> {link}</li>
+                  <Link key={index} to={link.link} >
+                  <li className='text-white mt-2 max-sm:text-sm'><KeyboardArrowRight /> {link.title}</li>
+                  </Link>
                 ))}
               </ul>
             </div>

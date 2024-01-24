@@ -12,7 +12,9 @@ import { notificationActions } from '../store/notificationSlice';
 import PropertyListings from '../container/PropertyListings';
 import PropertyLists from '../container/PropertyLists';
 import CardType1 from '../components/ui/CardType1';
+import ProfileApis from '../services/api/Profile';
 
+const profile = new ProfileApis();
 
 
 const ProfilePage = () => {
@@ -77,15 +79,10 @@ const ProfilePage = () => {
 
 
   const updateFormSubmitHandler = async (values) => {
+    console.log(values);
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/user/update`, values, {
-        headers: {
-          "Content-Type": 'application/json',
-          "Authorization": `Bearer ${accessToken}`
-        },
-        withCredentials: true
-      });
+       await profile.updateProfile(accessToken,values);
 
       dispatch(notificationActions.notify({
         type: "success",

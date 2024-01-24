@@ -3,6 +3,15 @@ import { Button, Fab } from '@mui/material';
 import { Pause, PlayArrow } from '@mui/icons-material';
 import { useEffect, useRef, useState } from "react";
 import {motion} from "framer-motion";
+import {Cloudinary} from '@cloudinary/url-gen';
+import {AdvancedVideo,lazyload } from '@cloudinary/react';
+
+
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: import.meta.env.VITE_CLOUD_NAME,
+  },
+});
 
 const HeroContainer = () => {
   const [videoPlay, setVideoPlay] = useState(false);
@@ -11,13 +20,7 @@ const HeroContainer = () => {
 
 
 
-  useEffect(() => {
-    if (videoPlay) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
-    }
-  }, [videoPlay]);
+
 
 
 
@@ -25,13 +28,26 @@ const HeroContainer = () => {
     setVideoPlay(prev => !prev);
   }
 
+  
+  // useEffect(() => {
+  //   if (videoPlay) {
+  //     videoRef.current.videoRef.current.play();
+  //   } else {
+  //     videoRef.current.videoRef.current.pause();
+  //   }
+  // }, [videoPlay]);
+
+  // useEffect(()=>{
+  //   console.log(videoRef.current.videoRef);
+  // },[])
+
 
   return (
-    <section className='relative h-[100vh] max-sm:h-[600px] w-full  overflow-hidden'>
+    <section className='relative h-[100vh] max-sm:h-[600px] w-screen  overflow-hidden'>
       <div className='absolute w-full h-full z-20 flex items-center left-20 max-md:left-10 max-sm:left-2  '>
         <div>
           <motion.h1 className='text-6xl max-lg:text-5xl max-sm:text-4xl text-white drop-shadow-xl font-semibold leading-tight' initial={{y:50,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1}}>Trusted Real Estate <br />Property For You</motion.h1>
-          <motion.p className='text-white max-w-lg max-sm:max-w-sm  text-base max-sm:text-sm pr-2  mt-4 drop-shadow-xl ' initial={{y:50,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic porro inventore cupiditate odit et sit iure, nulla numquam, voluptates doloremque ut enim nemo facere minima repudiandae iste, ad aperiam necessitatibus?</motion.p>
+          <motion.p className='text-white max-w-xl max-sm:max-w-sm text-lg max-sm:text-sm pr-2  mt-4 drop-shadow-xl ' initial={{y:50,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:1}}>Explore a curated selection of exquisite properties that cater to every taste and lifestyle. Whether you&apos;re searching for a cozy apartment, a spacious family house, or a luxurious penthouse, we have a diverse range of options to suit your preferences.</motion.p>
 
           <motion.div className='mt-10 flex gap-8 items-center' initial={{x:-50,opacity:0}} animate={{x:0,opacity:1}} transition={{duration:1}}>
             <Button variant="contained" color="primary" sx={{
@@ -48,10 +64,10 @@ const HeroContainer = () => {
               textTransform: "capitalize",
 
             }}  >Contact Us</Button>
-
+{/* 
             <div className='flex items-center gap-4'><Fab color="secondary" aria-label="play" size='small' onClick={toggleVideo} >
               {videoPlay?<Pause color='primary' fontSize="small" />:<PlayArrow color='primary' fontSize="small" />}
-            </Fab > <span className='text-white text-base max-sm:text-sm drop-shadow-xl'>Watch Video</span></div>
+            </Fab > <span className='text-white text-base max-sm:text-sm drop-shadow-xl'>Watch Video</span></div> */}
           </motion.div>
 
         </div>
@@ -61,7 +77,9 @@ const HeroContainer = () => {
 
 
         <div className='absolute w-full h-full bg-gradient-to-r from-black to-#5A81FA opacity-[0.4]'></div>
-        <video src={bgVideo} type="video/mp4" ref={videoRef} loop muted playsInline className="object-cover object-center h-full w-full"  />
+        {/* <VideoPlayer type="video/mp4"  /> */}
+        {/* <video src={bgVideo} type="video/mp4" ref={videoRef} loop muted playsInline className="object-cover object-center h-full w-full"  /> */}
+        <AdvancedVideo muted autoPlay  loop cldVid={cld.video('/bg-video-hero_wxyvt8')}  plugins={[lazyload()]} cldPoster="auto" />
 
       </div>
 

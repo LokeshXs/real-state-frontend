@@ -9,10 +9,9 @@ import { useNavigate } from "react-router-dom";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import { Button } from "@mui/material";
 import TestimonialContainer from "../container/TestimonialContainer";
-import Footer from "../container/Footer";
 import RevealAnimation from "../components/RevealAnimation";
 
 const propertyFetch = new PropertiesApis();
@@ -27,9 +26,7 @@ const HomePage = () => {
     const getProperties = async () => {
 
       try {
-        const result = await propertyFetch.getAllProperties('limit=10');
-
-        console.log(result);
+        const result = await propertyFetch.getAllProperties(`limit=${import.meta.env.VITE_DEFAULT_PROPERTY_ITEMS_HOMEPAGE}`);
         setPropertiesData(result.data.properties);
       } catch (err) {
         console.log(err);
@@ -70,7 +67,7 @@ const HomePage = () => {
           </RevealAnimation>
           <RevealAnimation>
 
-            <p className='text-lg max-sm:text-base text-[#898989] mt-8 max-w-2xl  text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quam porro labore quidem iste? Dolorum est neque, praesentium at provident illo dolor harum perspiciatis iste nobis dignissimos aliquam recusandae odit.</p>
+            <p className='text-lg max-sm:text-base text-[#898989] mt-8 max-w-2xl  text-center'>our mission is clear – to empower you in making smarter and more advantageous real estate deals.</p>
           </RevealAnimation>
         </div>
         <div className="flex justify-center mt-16">
@@ -88,8 +85,8 @@ const HomePage = () => {
               return (
                 <SwiperSlide key={property._id} className="swiper-slide" tag="div">
                   <PropertyCard name={property.name} price={property.price} img={property.images[0]} location={property.location} area={property.area} onClick={() => {
-                  navigate(`/properties/${property._id}`)
-                }} />
+                    navigate(`/properties/${property._id}`)
+                  }} />
                 </SwiperSlide>
               );
             })}
@@ -97,28 +94,28 @@ const HomePage = () => {
         </div>
         <div className="flex justify-center">
 
-         <RevealAnimation>
-         <Button variant="contained" color="primary" onClick={()=>navigate("/properties")} sx={{
-            borderRadius: '24px',
-            '@media (max-width: 1024px)': {
-              fontSize: '16px',
-            },
-            '@media (max-width: 640px)': {
-              fontSize: '14px',
-            },
-            fontSize: '18px',
-            letterSpacing: "1.2px",
-            fontFamily: 'poppins',
-            textTransform: "capitalize",
+          <RevealAnimation>
+            <Button variant="contained" color="primary" onClick={() => navigate("/properties")} sx={{
+              borderRadius: '24px',
+              '@media (max-width: 1024px)': {
+                fontSize: '16px',
+              },
+              '@media (max-width: 640px)': {
+                fontSize: '14px',
+              },
+              fontSize: '18px',
+              letterSpacing: "1.2px",
+              fontFamily: 'poppins',
+              textTransform: "capitalize",
 
 
-          }}  >Load More ...</Button>
-         </RevealAnimation>
+            }}  >Load More ...</Button>
+          </RevealAnimation>
         </div>
       </section>
 
       <TestimonialContainer />
-      
+
     </main>
   )
 }

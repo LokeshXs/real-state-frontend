@@ -5,10 +5,12 @@ import * as Yup from "yup";
 import { SwapVerticalCircleTwoTone } from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Alert, Button, Snackbar } from '@mui/material';
-import axios from 'axios';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { notificationActions } from '../store/notificationSlice';
+import AuthenticationApis from '../services/api/Authentication';
+
+const authenticate = new AuthenticationApis();
 
 const confirmPasswordSchema = Yup.object().shape({
   newPassword: Yup.string()
@@ -44,11 +46,7 @@ const PasswordReset = () => {
 console.log(values);
     try {
       setIsSubmitting(true);
-      const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/api/v1/user/auth/reset-password/${resetToken}`, JSON.stringify(values), {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+      const response = await authenticate.resetPassword(resetToken,values);
       console.log(response);
 
       dispatch(notificationActions.notify({

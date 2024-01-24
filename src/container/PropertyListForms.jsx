@@ -1,17 +1,18 @@
-import { useState } from 'react';
+
 import TextFieldComponent from '../components/TextField';
-import { AttachMoney, } from '@mui/icons-material';
-import { Button, Checkbox, Divider, FormControl, FormControlLabel, IconButton, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Button, Checkbox, Divider, FormControl, FormControlLabel,  InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { createListingForm } from '../utils/FormSchema';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { notificationActions } from '../store/notificationSlice';
+import PropertiesApis from '../services/api/properties';
+
+const property = new PropertiesApis();
 
 
 
 
-const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,setIsSubmitting,setOpen }) => {
+const PropertyListForms = ({ value, handleChange, selectedImages, isSubmitting, setIsSubmitting, setOpen }) => {
 
   // const [isSubmitting, setIsSubmitting] = useState(false);
   const { accessToken, email } = useSelector((state) => state.auth)
@@ -24,11 +25,9 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
     selectedImages.forEach(async (image, index) => {
       const formData = new FormData();
       formData.append(`file`, image);
-      formData.append("upload_preset", "a2oafg9w");
+      formData.append("upload_preset", import.meta.env.VITE_CLOUD_UPLOAD_PRESET);
       try {
-        const uploadResponse = axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`, formData);
-
-        // console.log(uploadResponse);
+        const uploadResponse = property.uploadPropertyImages(formData);
         images.push(uploadResponse);
       } catch (err) {
         console.log(err);
@@ -46,24 +45,12 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
       setIsSubmitting(true);
       const images = await uploadImages(selectedImages);
       const imagesData = await Promise.all(images);
-
       const urls = imagesData.map((res) => res.data.url);
-      console.log(urls);
 
 
-      const response = await axios.post("http://localhost:3000/api/v1/property/new-property", {
-        ...values,
-        creator: email,
-        images: urls,
-      }, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`
-        }
-      })
+      const response = await property.createNewProperty(email, urls, values, accessToken);
 
-      setIsSubmitting(false);
+
       setOpen(false);
       dispatch(notificationActions.notify({
         type: "success",
@@ -73,11 +60,12 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
 
     } catch (err) {
       console.log(err);
-      setIsSubmitting(false);
       dispatch(notificationActions.notify({
         type: "error",
         message: err.message,
       }))
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -103,7 +91,7 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
   });
 
   const basicFormValidationHandler = () => {
-  
+
     if (formik.errors.name || formik.errors.location || formik.errors.description || formik.errors.area || formik.errors.price) {
       formik.submitForm();
       return;
@@ -139,7 +127,7 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
               value={formik.values.price}
               onChange={formik.handleChange}
               error={formik.errors.price && formik.touched.price ? true : false}
-              onBlur={formik.handleBlur} 
+              onBlur={formik.handleBlur}
               helperText={formik.errors.price && formik.touched.price ? formik.errors.price : ''}
               sx={{
                 width: '200px'
@@ -152,9 +140,7 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <IconButton>
-                      <AttachMoney />
-                    </IconButton>
+                    <p>Rs.</p>
                   </InputAdornment>
                 ),
 
@@ -169,7 +155,7 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
               onChange={formik.handleChange}
               error={formik.errors.area && formik.touched.area ? true : false}
               helperText={formik.errors.area && formik.touched.area ? formik.errors.area : ''}
-              onBlur={formik.handleBlur} 
+              onBlur={formik.handleBlur}
               sx={{
                 width: '200px'
               }}
@@ -193,7 +179,7 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
           </div>
           <div className='flex justify-end'>
             <Button type="button" variant="contained" color="primary" onClick={basicFormValidationHandler} sx={{
-             
+
               fontSize: '16px',
               letterSpacing: "1.2px",
               fontFamily: 'roboto',
@@ -315,25 +301,25 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
 
           <div className='flex justify-between'>
             <Button type="button" variant="contained" color="primary" onClick={(event) => handleChange(0)} sx={{
-             
-             fontSize: '16px',
-             letterSpacing: "1.2px",
-             fontFamily: 'roboto',
-             width: '140px',
-             '@media(max-width:640px)': {
-               fontSize: '14px'
-             }
-           }}>Back</Button>
+
+              fontSize: '16px',
+              letterSpacing: "1.2px",
+              fontFamily: 'roboto',
+              width: '140px',
+              '@media(max-width:640px)': {
+                fontSize: '14px'
+              }
+            }}>Back</Button>
             <Button type="button" variant="contained" color="primary" onClick={moreInfoFormHandler} sx={{
-             
-             fontSize: '16px',
-             letterSpacing: "1.2px",
-             fontFamily: 'roboto',
-             width: '140px',
-             '@media(max-width:640px)': {
-               fontSize: '14px'
-             }
-           }}>Next</Button>
+
+              fontSize: '16px',
+              letterSpacing: "1.2px",
+              fontFamily: 'roboto',
+              width: '140px',
+              '@media(max-width:640px)': {
+                fontSize: '14px'
+              }
+            }}>Next</Button>
 
           </div>
 
@@ -347,25 +333,25 @@ const PropertyListForms = ({ value, handleChange, selectedImages,isSubmitting,se
 
           <div className='flex justify-between'>
             <Button type="button" variant="contained" color="primary" onClick={(event) => handleChange(1)} sx={{
-             
-             fontSize: '16px',
-             letterSpacing: "1.2px",
-             fontFamily: 'roboto',
-             width: '140px',
-             '@media(max-width:640px)': {
-               fontSize: '14px'
-             }
-           }}>Back</Button>
+
+              fontSize: '16px',
+              letterSpacing: "1.2px",
+              fontFamily: 'roboto',
+              width: '140px',
+              '@media(max-width:640px)': {
+                fontSize: '14px'
+              }
+            }}>Back</Button>
             <Button type="button" onClick={formik.handleSubmit} variant="contained" color="primary" sx={{
-             
-             fontSize: '16px',
-             letterSpacing: "1.2px",
-             fontFamily: 'roboto',
-             width: '140px',
-             '@media(max-width:640px)': {
-               fontSize: '14px'
-             }
-           }}>Confirm</Button>
+
+              fontSize: '16px',
+              letterSpacing: "1.2px",
+              fontFamily: 'roboto',
+              width: '140px',
+              '@media(max-width:640px)': {
+                fontSize: '14px'
+              }
+            }}>Confirm</Button>
 
           </div>
         </div>

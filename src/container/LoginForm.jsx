@@ -5,7 +5,6 @@ import { LoginSchema } from "../utils/FormSchema";
 import TextFieldComponent from "../components/TextField";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +12,9 @@ import { notificationActions } from "../store/notificationSlice";
 import LoadingButton from '@mui/lab/LoadingButton';
 import { SwapVerticalCircleTwoTone } from "@mui/icons-material";
 import ForgotPasswordModal from "../components/ForgotPasswordModal";
+import AuthenticationApis from "../services/api/Authentication";
+
+const authenticate = new AuthenticationApis();
 
 
 const LoginForm = () => {
@@ -26,13 +28,7 @@ const LoginForm = () => {
     console.log(values);
     setIsSubmitting(true);
     try {
-
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/user/auth/signin`, JSON.stringify(values), {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        withCredentials: true
-      });
+      const response = await authenticate.login(values);
 
       dispatch(authActions.login(
         response.data.data.user._id,

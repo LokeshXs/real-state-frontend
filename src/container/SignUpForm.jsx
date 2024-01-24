@@ -9,7 +9,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { notificationActions } from "../store/notificationSlice";
-
+import AuthenticationApis from "../services/api/Authentication";
+import { SwapVerticalCircleTwoTone } from "@mui/icons-material";
+import LoadingButton from "@mui/lab/LoadingButton";
+const authenticate = new AuthenticationApis();
 
 const SignUpForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,12 +21,9 @@ const SignUpForm = () => {
 
   const handleFormSubmit = async (values) => {
     console.log(values);
-
+    setIsSubmitting(true);
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/user/auth/signup`, values);
-
-
-
+      const response = await authenticate.signup(values);
       dispatch(notificationActions.notify({
         message: `${response.data.message} 😎`,
         type: 'success'
@@ -37,6 +37,8 @@ const SignUpForm = () => {
         message: `${error.response.data.message} 😔`,
         type: 'error'
       }));
+    }finally{
+      setIsSubmitting(false);
     }
 
   };
@@ -73,15 +75,30 @@ const SignUpForm = () => {
         <TextFieldComponent name="passwordConfirm" label="Confirm Password" type="password" error={formik.errors.passwordConfirm && formik.touched.passwordConfirm ? true : false} helperText={formik.errors.passwordConfirm && formik.touched.passwordConfirm ? formik.errors.passwordConfirm : ''} value={formik.values.passwordConfirm} onChange={formik.handleChange} onBlur={formik.handleBlur} disabled={isSubmitting ? true : false} isRequired={true} isPassword={true} />
 
 
-        <Button type="submit" variant="contained" color="primary" sx={{
-          borderRadius:'24px',
-          fontSize: '24px',
-          letterSpacing: "1.2px",
-          '@media(max-width:640px)': {
-            fontSize: '14px'
-          }
+        {
+          isSubmitting ? <LoadingButton
+            loading
+            loadingPosition="start"
+            startIcon={<SwapVerticalCircleTwoTone />}
+            variant="outlined"
+            sx={{
+              fontSize: '24px',
+              letterSpacing: "1.2px",
+              fontFamily: 'poppins'
 
-        }}>Sign Up</Button>
+            }}
+          >
+            Signing up
+          </LoadingButton> : <Button disabled={isSubmitting ? true : false} type="submit" variant="contained" color="primary" sx={{
+            borderRadius: "24px",
+            fontSize: '24px',
+            letterSpacing: "1.2px",
+            '@media(max-width:640px)': {
+              fontSize: '14px'
+            }
+
+          }}  >Signup</Button>
+        }
       </form>
 
       <p className="font-semibold text-lg text-primaryDark">OR</p>

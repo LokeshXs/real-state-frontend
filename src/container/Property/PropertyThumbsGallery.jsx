@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import "./thumbGallery.css";
 
+import  { useState } from 'react'
+import "./thumbGallery.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
@@ -11,9 +11,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import Image from '../../components/Image';
 
-const PropertyThumbsGallery = ({ images }) => {
+
+
+const PropertyThumbsGallery = ({images}) => {
+  console.log(images);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  console.log(thumbsSwiper);
   return (
     <>
       <div className=' relative h-[500px] max-xl:h-[400px] max-sm:h-[300px]'>
@@ -31,48 +33,12 @@ const PropertyThumbsGallery = ({ images }) => {
         >
 
           {images.map((item, index) => {
-            // let slicedArray = item.split("upload/");
-            // console.log(slicedArray);
-         
-            
-
-            // const optimizedImageUrl =  item.replace("upload/","upload/q_auto:low/f_auto/c_fill,g_auto/c_scale,w_auto/dpr_auto/");
-            // console.log(optimizedImageUrl);
-
             return  <SwiperSlide key={index}>
            <Image src={item} alt="Property Image" />
+         
           </SwiperSlide>
           })}
-          {/* <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-          </SwiperSlide> */}
+
         </Swiper>
 
 
@@ -94,39 +60,9 @@ const PropertyThumbsGallery = ({ images }) => {
 
           {images.map((item, index) => (
             <SwiperSlide key={index}>
-              <img src={item} />
+              <Image src={item} alt="Property Image" />
             </SwiperSlide>
           ))}
-          {/* <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-          </SwiperSlide> */}
         </Swiper>
       </div>
 

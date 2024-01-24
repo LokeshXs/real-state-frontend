@@ -11,7 +11,7 @@ const TestimonialContainer = () => {
          </RevealAnimation>
          <RevealAnimation>
 
-          <p className='text-lg max-sm:text-base text-[#898989] mt-8 max-w-2xl  text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam quam porro labore quidem iste? Dolorum est neque, praesentium at provident illo dolor harum perspiciatis iste nobis dignissimos aliquam recusandae odit.</p>
+          <p className='text-lg max-sm:text-base text-[#898989] mt-8 max-w-2xl  text-center'>Here&apos;s what our valued users have to say about their experiences with our platform</p>
          </RevealAnimation>
         </div>
 
@@ -24,15 +24,15 @@ const TestimonialContainer = () => {
 
             <div className="w-full flex justify-between  text-base font-medium">
               <div className="text-lg max-sm:text-base">
-                Lokesh Singh <br />
-                <span className="text-subtext text-base max-sm:text-sm">Software Engineer</span>
+                Joey Tribbiani<br />
+                <span className="text-subtext text-base max-sm:text-sm">Actor</span>
               </div>
 
               <div className="text-subtext max-sm:text-sm">⭐ 4.5 / 5</div>
             </div>
 
            <div className="flex justify-start w-full ">
-           <p className="max-w-[90%] text-gray-600 max-sm:text-sm max-sm:max-w-full">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, Lorem ipsum dolor, sit amet consectetur adipisicing eli</p>
+           <p className="max-w-[90%] text-gray-600 max-sm:text-sm max-sm:max-w-full">The platform provided a seamless experience, from browsing listings to connecting with agents. I&apos;m now a proud homeowner, and I couldn&apos;t be happier!</p>
            </div>
 
             
@@ -49,7 +49,7 @@ const TestimonialContainer = () => {
 
             <div className="w-full flex justify-between  text-base font-medium">
               <div className="text-lg max-sm:text-base">
-                Khushi singh<br />
+                Rachel Green<br />
                 <span className="text-subtext text-base max-sm:text-sm">BBQ Restaurant Owner</span>
               </div>
 
@@ -57,7 +57,7 @@ const TestimonialContainer = () => {
             </div>
 
            <div className="flex justify-start w-full ">
-           <p className="max-w-[90%] text-gray-600 max-sm:text-sm max-sm:max-w-full">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, Lorem ipsum dolor, sit amet consectetur adipisicing eli</p>
+           <p className="max-w-[90%] text-gray-600 max-sm:text-sm max-sm:max-w-full">The algorithms truly understand what I&apos;m looking for, and the suggested properties consistently aligned with my preferences. It&apos;s like having a real estate assistant working for you 24/7</p>
            </div>
 
             
