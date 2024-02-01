@@ -1,0 +1,1 @@
+import{j as r}from"./index-IHu69J5v.js";const a=({children:p,className:x})=>r.jsx("div",{className:`px-4 py-6 rounded-xl shadow-[0px_0px_36px_0px_rgba(0,78,255,0.2)] ${x} `,children:p});export{a as C};
