@@ -4,7 +4,7 @@ import CardType2 from "../components/ui/CardType2"
 
 const TestimonialContainer = () => {
   return (
-    <section className='mt-32 px-4'>
+    <section className='mt-32 max-sm:mt-16  px-4 pb-20 max-sm:pb-8'>
        <div className="flex flex-col items-center">
          <RevealAnimation>
          <h2 className='text-5xl max-lg:text-4xl max-sm:text-3xl font-semibold text-text text-center leading-snug'>Client Reviews</h2>
@@ -15,7 +15,7 @@ const TestimonialContainer = () => {
          </RevealAnimation>
         </div>
 
-        <div className="w-full flex justify-center gap-20 mt-20 mb-28 max-lg:flex-col max-lg:items-center max-lg:gap-28 ">
+        <div className="w-full flex justify-center gap-20 mt-20 max-lg:flex-col max-lg:items-center max-lg:gap-28 ">
           <RevealAnimation>
           <CardType2 className="reative min-w-[300px] max-w-[600px] flex flex-col items-center gap-8 max-sm:gap-6 py-12 max-xl:py-6">
             <div className="relative w-32 h-32 max-xl:w-24 max-xl:h-24 max-sm:w-20 max-sm:h-20 rounded-full overflow-hidden -mt-16">

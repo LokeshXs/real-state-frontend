@@ -13,6 +13,7 @@ import { Navigation } from 'swiper/modules';
 import { Button } from "@mui/material";
 import TestimonialContainer from "../container/TestimonialContainer";
 import RevealAnimation from "../components/RevealAnimation";
+import Footer from "../container/Footer";
 
 const propertyFetch = new PropertiesApis();
 
@@ -57,10 +58,11 @@ const HomePage = () => {
 
   return (
     <main>
+     
       <HeroContainer />
       <Whycontainer />
 
-      <section className='mt-32 '>
+      <section className='mt-32 max-sm:mt-16 '>
         <div className="flex flex-col items-center">
           <RevealAnimation>
             <h2 className='text-5xl max-lg:text-4xl max-sm:text-3xl font-semibold text-text text-center leading-snug'>We Help You <br /> To Make Better Deals</h2>
@@ -115,7 +117,7 @@ const HomePage = () => {
       </section>
 
       <TestimonialContainer />
-
+      <Footer />
     </main>
   )
 }

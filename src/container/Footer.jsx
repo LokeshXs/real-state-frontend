@@ -25,7 +25,7 @@ const Footer = () => {
       </div>
 
 
-      <div className='flex justify-between px-16 max-xl:px-8 max-sm:px-4 pt-[200px] max-md:pt-[150px]  max-sm:pt-[100px] max-sm:flex-col max-sm:gap-16 py-4 '>
+      <div className='flex justify-between px-16 max-xl:px-8 max-sm:px-4 pt-[200px] max-md:pt-[150px]  max-sm:pt-[80px] max-sm:flex-col max-sm:gap-4 py-4 '>
         <RevealAnimation>
           <div >
             <h3 className='text-5xl font-bold text-textVeryLight tracking-wider max-xl:text-4xl max-sm:text-3xl'>Rental</h3>
@@ -37,7 +37,7 @@ const Footer = () => {
                 <p>Email: rental123@gmail.com</p>
               </div>
 
-              <div className='mt-8'>
+              <div className='mt-4'>
                 <h5 className='text-lg font-semibold text-white max-sm:text-base'>Follow Us On :</h5>
                 <div className='text-white flex gap-4 mt-2'>
                   <FacebookRounded fontSize='large' />

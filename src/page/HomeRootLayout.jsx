@@ -37,7 +37,7 @@ const HomeRootLayout = () => {
         >
           <Alert severity={type || "success"} onClose={snackBarCloseHandler}>{message}</Alert>
         </Snackbar>
-        <Footer />
+      
 
       </main>
     </>

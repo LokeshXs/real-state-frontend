@@ -76,47 +76,6 @@ html{
   
   }
 }
-/* HTML: <div class="loader"></div> */
-.loader {
-  width: 40px;
-  height: 30px;
-  --c: no-repeat linear-gradient(#5a81fa 0 0);
-  background:
-    var(--c) 0 100%,
-    var(--c) 50% 100%,
-    var(--c) 100% 100%;
-  background-size: 8px calc(100% - 4px);
-  position: relative;
-}
-
-.loader:before {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #5a81fa;
-  left: 0;
-  top: 0;
-  animation:
-    l3-1 1.5s linear infinite alternate,
-    l3-2 0.75s cubic-bezier(0, 200, .8, 200) infinite;
-}
-
-@keyframes l3-1 {
-  100% {
-    left: calc(100% - 8px)
-  }
-}
-
-@keyframes l3-2 {
-  100% {
-    top: -0.1px
-  }
-}
-
-
-
 
 
 /* CARD */
@@ -237,6 +196,15 @@ html{
   fill: #FFFFFF;
 }
 
+@media(max-width: 640px){
+  .custom-shape-divider-bottom-1704103109 svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.3px);
+    height: 60px;
+  }
+}
+
 
 /* Footer SVG */
 /* ********************************************* */
@@ -269,8 +237,8 @@ html{
   .custom-shape-divider-top-1704274109 svg {
     position: relative;
     display: block;
-    width: calc(113% + 1.3px);
-    height: 100px;
+    width: calc(120% + 1.3px);
+    height: 60px;
   }
 }
 
@@ -283,13 +251,13 @@ html{
 /* ********************************************* */
 
 .swiper-wrapper{
-  padding-bottom: 100px ;
-
+padding-bottom: 120px;
+ 
 }
 
 .swiper-slide{
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  justify-content: center ;
   align-items: center;
 }
 
@@ -315,7 +283,3 @@ html{
   /* Firefox */
 }
 
-/* .properties-section-grid {
-  display: grid;
-  grid-template-columns: ;
-} */

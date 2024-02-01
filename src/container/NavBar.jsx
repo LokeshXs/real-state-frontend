@@ -81,25 +81,6 @@ const NavBar = () => {
 
 
 
-        {/* <TextField id="filled-basic" label="Search" variant="filled" color='primary' className='bg-white rounded-t-md w-96 max-xl:w-60 max-sm:w-52' sx={{
-          '& .MuiFilledInput-root': {
-            fontSize: '20px',
-            fontFamily: 'poppins',
-            '@media (max-width: 1280px)': {
-              fontSize: '16px',
-            },
-
-          }
-        }} InputProps={{
-
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton aria-label="delete">
-                <Search />
-              </IconButton>
-            </InputAdornment>
-          )
-        }} /> */}
 
 
         <p className='text-5xl font-bold text-textVeryLight tracking-wider max-xl:text-4xl max-sm:text-2xl'>Rental</p>
@@ -109,7 +90,6 @@ const NavBar = () => {
 
         <ul className='relative flex gap-8 items-center justify-center max-md:hidden '>
         <li className='text-textVeryLight font-semibold text-2xl max-xl:text-xl'><Link to="/">Home</Link></li>
-          <li className='text-textVeryLight font-semibold text-2xl max-xl:text-xl'><Link to="/about">About</Link></li>
           <li className='text-textVeryLight font-semibold text-2xl max-xl:text-xl'><Link to="/properties">Browse</Link></li>
           <li className='text-textVeryLight font-semibold text-2xl max-xl:text-xl'>{email ? <div>
             <Button onClick={handleClick}><Avatar src={profileImg} /></Button>
@@ -162,7 +142,7 @@ const NavBar = () => {
                   Home
                 </Link>
               </motion.li>
-              <motion.li
+              {/* <motion.li
                 className='mt-8'
                 variants={{
                   hidden: { opacity: 0, x: 80 },
@@ -172,7 +152,7 @@ const NavBar = () => {
                 <Link to="/about" className='font-montserrat leading-normal text-3xl text-white font-bold' onClick={() => { setIsNavBarOpen(false) }}>
                   About
                 </Link>
-              </motion.li>
+              </motion.li> */}
               <motion.li
                 className='mt-8'
                 variants={{

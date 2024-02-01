@@ -1,18 +1,23 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import HomeRootLayout from './page/HomeRootLayout';
-import HomePage from './page/HomePage';
-import AuthPage from './page/AuthPage';
 import SignUpForm from './container/SignUpForm';
 import LoginForm from './container/LoginForm';
-import AboutPage from './page/AboutPage';
 import PersistLogin from './utils/PersistLogin';
-const ProfilePage = lazy(() => import("./page/ProfilePage"));
 import { loader as checkAuthLoader } from './utils/loaders';
-import ErrorBoundary from './components/ErrorBoundary';
 import PasswordReset from './page/PasswordReset';
-import PropertiesPage from './page/PropertiesPage';
-import PropertyPage from './page/PropertyPage';
+import LoadingFallback from './components/ui/LoadingFallback';
+import { wait } from './utils/utils';
+import HomeLoading from './components/ui/HomeLoading';
+
+const HomeRootLayout = lazy(() => wait(4000).then(() => import('./page/HomeRootLayout')));
+const ProfilePage = lazy(() => import("./page/ProfilePage"));
+const HomePage = lazy(() => import('./page/HomePage'));
+const AuthPage = lazy(() => import('./page/AuthPage'));
+const PropertiesPage = lazy(() => import('./page/PropertiesPage'));
+const PropertyPage = lazy(() => import('./page/PropertyPage'));
+
+
+
 
 
 // **************************************
@@ -23,7 +28,9 @@ const App = () => {
     {
       path: '/',
 
-      element: <HomeRootLayout />,
+      element: <Suspense fallback={<HomeLoading  />}>
+        <HomeRootLayout />
+      </Suspense>,
       children: [
         {
           path: "/",
@@ -31,31 +38,43 @@ const App = () => {
           children: [
             {
               path: '',
-              element: <HomePage />
+              element: <Suspense fallback={<LoadingFallback />}>
+                <HomePage />
+              </Suspense>
             },
             {
               path: '/properties',
-              element: <PropertiesPage />
+              element: <Suspense fallback={<LoadingFallback />}>
+                <PropertiesPage />
+              </Suspense>
             },
             {
               path: '/properties/:propertyId',
-              element: <PropertyPage />
+              element: <Suspense fallback={<LoadingFallback />}>
+                <PropertyPage />
+              </Suspense>
             },
-            {
-              path: 'about',
-              element: <AboutPage />,
-              loader: checkAuthLoader,
-            },
+            // {
+            //   path: 'about',
+            //   element: <Suspense fallback={<LoadingFallback/>}>
+            //     <AboutPage />
+            //   </Suspense>,
+            //   loader: checkAuthLoader,
+            // },
             {
               path: 'profile/:id',
-              element: <ProfilePage />,
+              element: <Suspense fallback={<LoadingFallback />}>
+                <ProfilePage />
+              </Suspense>,
               loader: checkAuthLoader,
             }
           ]
         },
         {
           path: "auth",
-          element: <AuthPage />,
+          element: <Suspense fallback={<LoadingFallback />}>
+            <AuthPage />
+          </Suspense>,
           children: [
             {
               path: "signup",
@@ -68,30 +87,6 @@ const App = () => {
           ]
         },
 
-        // {
-        //   path: 'about',
-        //   element: <PersistLogin />,
-        //   children: [
-        //     {
-        //       path: '',
-        //       element: <AboutPage />,
-        //       loader: checkAuthLoader,
-        //     }
-        //   ]
-        // },
-        // {
-        //   path: 'profile/:id',
-        //   element: <PersistLogin />,
-
-
-        //   children: [
-        //     {
-        //       path: '',
-        //       element: <ProfilePage />,
-        //       loader: checkAuthLoader,
-        //     }
-        //   ]
-        // }
       ],
 
 

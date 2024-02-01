@@ -6,11 +6,11 @@ import { MarkEmailReadOutlined } from '@mui/icons-material';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { notificationActions } from '../store/notificationSlice';
+import AuthenticationApis from '../services/api/Authentication';
 
 
 
-
-
+const authentication = new AuthenticationApis();
 const ForgotPasswordModal = ({ setModalState }) => {
 
   const [isCardFlipped, setIsCardFlipped] = useState(false);
@@ -30,9 +30,7 @@ const ForgotPasswordModal = ({ setModalState }) => {
 
     try {
       setSubmitting(true);
-      const response = await axios.post("http://localhost:3000/api/v1/user/auth/forgot-password", {
-        "email": emailValue
-      });
+      const response = await authentication.forgotPassword(emailValue);
       console.log(response);
 
       setIsCardFlipped(true);
@@ -73,7 +71,7 @@ const ForgotPasswordModal = ({ setModalState }) => {
   return (
     // <EmailSentModal />
     <>
-      <div className={`fixed z-30 top-1/2 right-1/2 translate-y-[-50%] translate-x-[50%] bg-secondaryLight transition-all duration-300 rounded-xl opacity-1}`}>
+      <div className={`fixed z-30 top-1/2 right-1/2 translate-y-[-50%] translate-x-[50%] bg-white transition-all duration-300 rounded-xl opacity-1}`}>
         {isCardFlipped ? <EmailSentModal /> :
           <div className={`h-80 w-[500px] py-4 px-8 flex flex-col items-center justify-center gap-8 ${isCardFlipped ? 'hidden' : 'block'}`}  >
             <div>
