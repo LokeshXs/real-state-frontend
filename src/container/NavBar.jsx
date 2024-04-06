@@ -84,7 +84,7 @@ const NavBar = () => {
 
 
         <Link to="/">
-        <p className='text-4xl font-medium text-textVeryLight tracking-wider max-xl:text-3xl max-sm:text-2xl ='>AashiyanaAve</p>
+        <p className='text-4xl font-medium text-textVeryLight tracking-wider max-xl:text-3xl max-sm:text-2xl ='>Aashiyana</p>
         </Link>
 
       

@@ -5,8 +5,8 @@ const HomeLoading = () => {
   return (
     <div className=' h-screen w-screen flex justify-center items-center'>
       <div className={style["loader"]}>
-        <span className=' text-8xl font-semibold'>Rental</span>
-        <span className=' text-8xl font-semibold'>Rental</span>
+        <span className=' text-7xl font-semibold'>Aashiyana</span>
+        <span className=' text-7xl font-semibold'>Aashiyana</span>
       </div>
     </div>
   )
