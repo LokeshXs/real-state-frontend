@@ -1,12 +1,13 @@
 import axios from "axios";
+import { BACKEND_URL } from "../../../config/config";
 
 class PropertiesApis {
   async getAllProperties(queryString) {
-    return axios.get(`${import.meta.env.VITE_BASE_URL}/api/v1/property/all?${queryString}`);
+    return axios.get(`${BACKEND_URL}/api/v1/property/all?${queryString}`);
   }
 
   async getProperty(id){
-    return axios.get(`${import.meta.env.VITE_BASE_URL}/api/v1/property/${id}`);
+    return axios.get(`${BACKEND_URL}/api/v1/property/${id}`);
   }
 
 
@@ -16,7 +17,7 @@ class PropertiesApis {
 
   async createNewProperty(creator,images,values,accessToken){
     console.log(images,creator);
-    return await axios.post("http://localhost:3000/api/v1/property/new-property", {
+    return await axios.post(`${BACKEND_URL}/api/v1/property/new-property`, {
       ...values,
       creator,
       images,

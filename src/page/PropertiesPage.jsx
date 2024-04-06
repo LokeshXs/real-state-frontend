@@ -6,13 +6,9 @@ import PropertiesApis from "../services/api/properties";
 import CardSkeleton from "../components/ui/CardSkeleton";
 import { useNavigate } from "react-router-dom";
 import { Button, Pagination, Stack } from "@mui/material";
-
-
-
-
 const propertyFetch = new PropertiesApis();
 const skeletonArray = Array.from(Array(10).keys());
-console.log(skeletonArray);
+
 
 
 const initialState = {
@@ -91,7 +87,8 @@ const PropertiesPage = () => {
 
 
   useEffect(() => {
-
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
     const fetchProperties = async () => {
       setLoading(true);
@@ -104,7 +101,7 @@ const PropertiesPage = () => {
         if (filterState.facilities[key]) {
           let camelCaseKey = key.replace(" ", '');
           camelCaseKey = camelCaseKey.charAt(0).toLowerCase() + camelCaseKey.slice(1);
-          console.log(camelCaseKey);
+        
           filteredFacilites[camelCaseKey] = filterState.facilities[key]
         }
       })
@@ -128,13 +125,14 @@ const PropertiesPage = () => {
       // Add a parameter to the URL
       // currentURL.searchParams.set('yourParameterName', 'yourParameterValue');
 
-      console.log(queryString);
+    
 
       const res = await propertyFetch.getAllProperties(queryString);
 
       const prop = res.data;
 
-      console.log(prop);
+      // console.log(prop);
+
       setFilteredProperties(prop);
       setIsFilterFormSubmitted(false);
       setLoading(false)
@@ -158,7 +156,7 @@ const PropertiesPage = () => {
 
             filteredProperties?.properties?.map((property, index) => {
               return (
-                <PropertyCard key={index} name={property.name} price={property.price} img={property.images[0]} location={property.location} onClick={() => {
+                <PropertyCard key={index} name={property.name} price={property.price} img={property.images[0]} location={property.location} area={property.area} onClick={() => {
                   navigate(`/properties/${property._id}`)
                 }} />
               )

@@ -6,8 +6,7 @@ import CardType1 from "./ui/CardType1";
 import Image from "./Image";
 
 const PropertyCard = ({ name, price, img, location,area,onClick }) => {
-console.log(img);
-console.log(image);
+
   const propertyImage =  img;
   const formattedCurrency = formatCurrency(String(price));
   return (
@@ -19,7 +18,7 @@ console.log(image);
 
       <div className="mt-4 flex justify-between gap-2  w-full">
         <div className="flex flex-col items-start gap-1">
-          <p className="text-2xl max-sm:text-xl font-semibold">{`${formattedCurrency}`}</p>
+          <p className="text-2xl font-bold max-sm:font-medium antialiased">{`${formattedCurrency}`}</p>
           <p className="text-xl max-sm:text-lg text-primaryDark font-medium whitespace-nowrap overflow-hidden truncate max-w-[200px] ">{name}</p>
 
           <Button onClick={onClick} variant="contained" sx={{
@@ -37,10 +36,10 @@ console.log(image);
         </div>
 
         <div className="flex flex-col gap-1 items-end">
-          <Chip color="primary" icon={<LocationOnOutlined fontSize="small" />} label={location} variant="outlined" sx={{ fontSize: "16px",'@media(max-width:640px)':{
+          <Chip color="primary" icon={<LocationOnOutlined fontSize="small" />} label={location} variant="outlined" sx={{ fontSize: "14px",fontWeight:"420",letterSpacing:"0.4px",'@media(max-width:640px)':{
             fontSize:'12px'
           } }} />
-          <p className="text-base text-primaryDark  ">{area} sqft.</p>
+          <p className="text-base  font-medium  ">{area} sqft.</p>
 
         </div>
       </div>

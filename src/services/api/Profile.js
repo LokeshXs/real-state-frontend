@@ -1,9 +1,10 @@
 import axios from "axios";
+import { BACKEND_URL } from "../../../config/config";
 
 class ProfileApis {
   async updateProfile(accessToken, { firstName, lastName, email }) {
     return await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/api/v1/user/update`,
+      `${BACKEND_URL}/api/v1/user/update`,
       {
         firstName,lastName,email
       },

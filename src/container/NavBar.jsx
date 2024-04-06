@@ -63,7 +63,7 @@ const NavBar = () => {
 
   return (
     <header className=' px-16 py-4 max-lg:px-4 max-lg:py-2 max-sm:px-1 absolute z-[30] w-full   '>
-      <nav className='relative  px-8 py-4 rounded-xl flex justify-between  items-center max-md:flex-row-reverse max-sm:px-4 max-sm:py-2 bg-primary'>
+      <nav className='relative  px-8 py-4 rounded-xl flex justify-between  items-center max-md:flex-row-reverse max-sm:px-4 max-sm:py-2 bg-primary '>
 
 
         <div className='hidden max-md:block'>
@@ -83,7 +83,9 @@ const NavBar = () => {
 
 
 
-        <p className='text-5xl font-bold text-textVeryLight tracking-wider max-xl:text-4xl max-sm:text-2xl'>Rental</p>
+        <Link to="/">
+        <p className='text-4xl font-medium text-textVeryLight tracking-wider max-xl:text-3xl max-sm:text-2xl ='>AashiyanaAve</p>
+        </Link>
 
       
 
